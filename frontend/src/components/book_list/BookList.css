@@ -1,0 +1,30 @@
+#book-list {
+    margin: 10px;
+    float: right;
+    width: fit-content;
+    height: 192px;
+    border-collapse: collapse;
+    border: #aaa 2px solid;
+    overflow: auto;
+    max-height: 192px;
+    text-align: left;
+}
+
+#book-list thead {
+    display: block;
+    padding-bottom: 4px;
+}
+
+#book-list tbody {
+    display: block;
+    height: 192px;
+    overflow-y: scroll;
+}
+
+#book-list tbody tr:hover {
+    background-color: #aaa;
+}
+
+#book-list tbody tr.selected {
+    background-color: #000;
+}
