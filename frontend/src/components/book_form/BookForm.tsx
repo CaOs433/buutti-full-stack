@@ -4,8 +4,8 @@ import './BookForm.css';
 
 interface BookFormProps {
     book: Book | undefined;
-    saveBook: (book: Book | NewBook) => number | undefined;
-    deleteBook: (id: number) => boolean;
+    saveBook: (book: Book | NewBook) => Promise<number | undefined>;
+    deleteBook: (id: number) => Promise<boolean>;
 };
 
 /**
@@ -79,9 +79,9 @@ const BookForm: React.FC<BookFormProps> = ({ book, saveBook, deleteBook }) => {
         }
     };
 
-    const handleSaveNew = () => {
+    const handleSaveNew = async () => {
         setId(
-            saveBook({
+            await saveBook({
                 title,
                 author,
                 description
