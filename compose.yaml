@@ -1,0 +1,66 @@
+services:
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+            args:
+                - FRONTEND_DIR=frontend
+            target: frontend-builder
+        ports:
+            - 3000:3000
+        depends_on:
+            - server
+        container_name: buutti-full-stack-frontend
+        networks:
+            - dev
+
+    server:
+        build:
+            context: .
+            args:
+                - BACKEND_DIR=backend
+            target: backend-builder
+        ports:
+            - 8080:8080
+            - "127.0.0.1:5000:5000"
+        depends_on:
+            db:
+                condition: service_healthy
+        container_name: buutti-full-stack-server
+        environment:
+            - DB_HOST=${DB_HOST}
+            - DB_PORT=${DB_PORT}
+            - DB_DATABASE=${DB_DATABASE}
+            - DB_USER=${DB_USER}
+            - DB_PASSWORD=${DB_PASSWORD}
+            - SQLALCHEMY_DATABASE_URI=${SQLALCHEMY_DATABASE_URI}
+        networks:
+            - dev
+
+    db:
+        image: postgres
+        restart: always
+        user: ${DB_USER}
+        volumes:
+            - db-data:/var/lib/postgresql/data
+        container_name: buutti-full-stack-db
+        environment:
+            - POSTGRES_DB=${DB_DATABASE}
+            - POSTGRES_USER=${DB_USER}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+        expose:
+            - ${DB_PORT}
+        healthcheck:
+            test: [ "CMD", "pg_isready" ]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        networks:
+            - dev
+
+volumes:
+    db-data:
+
+networks:
+    dev:
+        driver: bridge
