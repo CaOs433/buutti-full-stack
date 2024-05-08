@@ -1,0 +1,37 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@hostname=localhost
+@port=5000
+
+
+# Books API:
+
+GET http://{{hostname}}:{{port}}/books
+Accept: application/json
+
+###
+
+POST http://{{hostname}}:{{port}}/books
+Content-Type: application/json
+
+{
+    "title": "Book 1",
+    "author": "Author 1",
+    "description": "Description 1"
+}
+
+###
+
+PUT http://{{hostname}}:{{port}}/books/1
+Content-Type: application/json
+
+{
+    "Id": 5,
+    "title": "Book 1 - EDITED",
+    "author": "Author 1",
+    "description": "This is a new description for Book 1."
+}
+
+###
+
+DELETE http://{{hostname}}:{{port}}/books/1
+Accept: application/json
