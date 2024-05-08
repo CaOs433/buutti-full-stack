@@ -12,10 +12,28 @@ def initialize_database(db):
     db.create_all()
 
     if not Book.query.first():
-        book1 = Book(title='Book 1', author='Author 1', description='Description 1')
-        book2 = Book(title='Book 2', author='Author 2', description='Description 2')
-        book3 = Book(title='Book 3', author='Author 3', description='Description 3')
+        book1 = Book(
+            title='The Great Gatsby',
+            author='F. Scott Fitzgerald',
+            description='A novel about the American Dream and the Roaring Twenties.'
+        )
+        book2 = Book(
+            title='To Kill a Mockingbird',
+            author='Harper Lee',
+            description='A story of racial injustice and the loss of innocence in the American South.'
+        )
+        book3 = Book(
+            title='1984',
+            author='George Orwell',
+            description='A dystopian novel depicting a totalitarian society ruled by Big Brother.'
+        )
+        book4 = Book(
+            title='Pride and Prejudice',
+            author='Jane Austen',
+            description='A classic romance novel set in 19th-century England.'
+        )
         db.session.add(book1)
         db.session.add(book2)
         db.session.add(book3)
+        db.session.add(book4)
         db.session.commit()
