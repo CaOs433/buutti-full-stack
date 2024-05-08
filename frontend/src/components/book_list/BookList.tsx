@@ -35,7 +35,7 @@ const BookList: React.FC<BookListProps> = ({ books, selectBook }) => {
             </thead>
             <tbody>
                 {books.map((book, index) => (
-                    <tr key={index} onClick={() => handleClick(book.id)} className={selectedBookId === book.id ? 'selected' : ''}>
+                    <tr key={index} onClick={() => handleClick(book.id)} className={selectedBookId === book.id ? 'selected' : '' } data-testid={`book-list-body-tr-${book.id}`} >
                         <td>{book.title} - {book.author}</td>
                     </tr>
                 ))}

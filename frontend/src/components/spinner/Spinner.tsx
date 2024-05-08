@@ -4,6 +4,6 @@ import './Spinner.css';
 export const Spinner: JSX.Element = (
     <div>
         <p>Loading...</p>
-        <div className='spinner' />
+        <div className='spinner' data-testid='spinner' />
     </div>
 );

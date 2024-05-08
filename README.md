@@ -49,3 +49,11 @@ It is recommend to use an virtual environment (venv) to run a Python app.
 
 Depending of your operating system, you may need to install some other python packages.
 See the Dockerfile for reference of a Linux based os.
+
+
+## Testing
+
+There's some primitive tests done for the React app, but still work in progress.
+You can run them with `yarn test`.
+
+For the server app: work in progress...
