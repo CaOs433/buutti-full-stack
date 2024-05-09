@@ -83,6 +83,7 @@ const App: React.FC = () => {
         setLoading(false);
 
         setBooks(books.filter((book) => book.id !== id));
+        setSelectedBook(undefined);
 
         return results.data;
     };
